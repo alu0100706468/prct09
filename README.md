@@ -1,6 +1,14 @@
-#Práctica 9
+#Práctica 09
 
-Jerarquía de Directorios:
+Programa que nos proporciona la posibilidad de representar matrices densas y dispersas de distinta forma.
+
+##Jerarquía de Clases
+
+En este código encontraremos la clase madre "Matriz", la cual tendrá dos hijos: "MatrizDispersa" y "MatrizDensa".
+
+La clase Matriz nos servirá de interfaz para las clases hijas y éstas, tendrán implementadas sus operaciones básicas, cuya implementación varía en cada caso.
+
+##Jerarquía de Directorios:
 
 prct09/.git
 prct09/.gitignore
