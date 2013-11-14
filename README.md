@@ -1,29 +1,17 @@
-# Practica9
+#Práctica 9
 
-TODO: Write a gem description
+Jerarquía de Directorios:
 
-## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'Practica9'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install Practica9
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+prct09/.git
+prct09/.gitignore
+prct09/Gemfile
+prct09/LICENSE.txt
+prct09/Practica9.gemspec
+prct09/README.md
+prct09/Rakefile
+prct09/bin
+|--prct09/bin/Practica09
+prct09/lib
+`--prct09/lib/Practica9.rb
+`--prct09/lib/Practica9
+   `--prct09/lib/Practica9/version.rb
