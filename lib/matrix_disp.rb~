@@ -1,6 +1,34 @@
 #require "matrix_disp/version"
 
 module Math
+  
+  class Matriz
+  def initialize (f,c,v)
+    @f, @c = f, c
+    @v = v
+  end
+  
+  def def_tipo
+    if (((@v.count{|e| e == 0}*100)/(@f*@c)) >= 60)
+      resultado = SparseMatrix.new
+      for i in (0...@f*@c)
+	tmp = SparseVector.new
+	if @v[i] != 0
+	  if resultado.matrix[i%@c].is_a? SparseVector
+	    resultado.matrix[i%@c][i/@f] = @v[i]
+	  else
+	    tmp[i/@f] = @v[i]
+	    resultado.matrix[i%@c] = tmp
+	  end
+	end
+      end
+      return resultado
+    else
+      return DenseMatrix.new(@f,@c,@v)
+    end
+  end
+end
+  
   class Fraccion
         include Comparable
             #Accessors para poder acceder a los métodos :num y :denom
