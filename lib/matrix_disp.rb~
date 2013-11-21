@@ -93,4 +93,201 @@ module Math
 		(@num.to_f/@denom.to_f) <=> (other.num.to_f/other.denom.to_f)
 	    end
  end
+ 
+ class SparseVector 
+  attr_reader :vector
+
+  def initialize(h = {})
+    @vector = Hash.new(0)
+    @vector = @vector.merge!(h)
+  end
+
+  def [](i)
+    @vector[i] 
+  end
+  
+  def []=(i,v)
+    @vector[i] = v
+  end
+
+  def to_s
+    @vector.to_s
+  end
+  
+  def keys
+    @vector.keys
+  end
+  
+  def +(other)
+    resultado = SparseVector.new
+    for i in other.vector.keys do
+      resultado[i] = other[i]
+    end
+    for i in @vector.keys do
+      resultado[i] = @vector[i] + other[i]
+    end
+    resultado
+  end
+
+def -(other)
+    resultado = SparseVector.new
+    for i in other.vector.keys do
+      resultado[i] = other[i]
+    end
+    for i in @vector.keys do
+      resultado[i] = @vector[i] - other[i]
+    end
+    resultado
+  end
+end
+
+class SparseMatrix < Matriz
+
+  attr_reader :matrix
+
+  def initialize(h = {})
+    @matrix = Hash.new({})
+    for k in h.keys do 
+      @matrix[k] = if h[k].is_a? SparseVector
+                     h[k]
+                   else 
+                     @matrix[k] = SparseVector.new(h[k])
+                   end
+    end
+  end
+
+  def [](i)
+    @matrix[i]
+  end
+  
+  def []=(i,other)
+    for y in other.keys do
+      puts "---- other[#{y}] #{other[y]}"
+      @matrix[i][y] = other[y]
+      puts "---- matrix[#{i}][#{y}] #{@matrix[i][y]}"
+    end
+  end
+
+  def imp
+    for i in @matrix.keys do
+      puts "#{i} ---- #{@matrix[i].to_s}" 
+    end
+  end
+  
+  def col(j)
+    c = {}
+    for r in @matrix.keys do
+      c[r] = @matrix[r].vector[j] if @matrix[r].vector.keys.include? j
+    end
+    SparseVector.new c
+  end
+  
+  def +(other)
+    resultado = SparseMatrix.new
+    for i in other.matrix.keys do
+      resultado.matrix[i] = other[i]
+    end
+    for i in @matrix.keys do
+      for j in @matrix[i].keys do
+	if other.matrix[i][j] == nil
+	  resultado.matrix[i] = @matrix[i]
+	else
+	  resultado.matrix[i][j] = @matrix[i][j]+other.matrix[i][j]
+	end
+      end
+    end
+    resultado
+  end
+
+def -(other)
+    resultado = SparseMatrix.new
+    for i in other.matrix.keys do
+      resultado.matrix[i] = other[i]
+    end
+    for i in @matrix.keys do
+      for j in @matrix[i].keys do
+	if other.matrix[i][j] == nil
+	  resultado.matrix[i] = @matrix[i]
+	else
+	  resultado.matrix[i][j] = @matrix[i][j]-other.matrix[i][j]
+	end
+      end
+    end
+    resultado
+  end
+  
+  
+  
+  def traspuesta
+    resultado = SparseMatrix.new
+    for i in @matrix.keys do
+      for j in @matrix[i].keys do
+	tmp = SparseVector.new
+	for x in @matrix.keys do
+	  for y in @matrix[x].keys do
+	    #puts "#{j} == #{y}"
+	    if j == y
+	      #puts "#{j} == #{y}, por tanto tmp[#{i}] = #{@matrix[x][y]}"
+	      tmp[i] = @matrix[x][y]
+	      #puts "TMP[#{i}] = #{tmp[i]}"
+	    end
+	  end
+	end
+	resultado.matrix[j] = tmp
+	#puts "resultado.matrix[#{j}] = #{tmp}, Y QUEDA: #{resultado.matrix[j]}"
+      end
+    end
+    resultado
+  end
+  
+  def *(other)
+    trasp = self.traspuesta
+    resultado = SparseMatrix.new
+    for i in trasp.matrix.keys do
+      for j in trasp.matrix[i].keys do
+	if other.matrix[i][j] != nil
+	  
+	end
+      end
+    end
+  end
+  
+def max
+  max = 0
+  for i in @matrix.keys do
+    for j in @matrix[i].keys do
+      if @matrix[i][j].is_a? Fraccion
+	tmp = Fraccion.new(max,1)
+	if @matrix[i][j] > tmp
+	  max = @matrix[i][j].to_f
+	end
+      else
+	if @matrix[i][j] > max
+	  max = @matrix[i][j]
+	end
+      end
+    end
+  end
+  max
+end
+
+def min
+  min = 999999999
+  for i in @matrix.keys do
+    for j in @matrix[i].keys do
+      if @matrix[i][j].is_a? Fraccion
+	tmp = Fraccion.new(min,1)
+	if @matrix[i][j] < tmp
+	  min = @matrix[i][j].to_f
+	end
+      else
+	if @matrix[i][j] < min
+	  min = @matrix[i][j]
+	end
+      end
+    end
+  end
+  min
+end
+end
 end
