@@ -1,8 +1,8 @@
 #require "matrix_disp/version"
 
 module Math
-  
-  class Matriz
+
+class Matriz
   def initialize (f,c,v)
     @f, @c = f, c
     @v = v
@@ -29,7 +29,7 @@ module Math
   end
 end
   
-  class Fraccion
+class Fraccion
         include Comparable
             #Accessors para poder acceder a los métodos :num y :denom
             attr_accessor :num 
@@ -122,7 +122,7 @@ end
 	    end
  end
  
- class SparseVector 
+class SparseVector 
   attr_reader :vector
 
   def initialize(h = {})
@@ -318,6 +318,7 @@ def min
   min
 end
 end
+
 
 class DenseMatrix < Matriz
   attr_accessor :m
@@ -515,5 +516,52 @@ end
                 end
                 resultado
                 end
+end
+
+if __FILE__ == $0 
+#   a = Fraccion.new(4,5)
+#   z = SparseMatrix.new 1000 => { 100 => a, 500 => 200}, 20000 => { 1000 => 3, 9000 => 200}
+#   y = SparseMatrix.new 1500 => { 100 => a, 500 => 20}, 20000 => { 1000 => 3, 9000 => 200}
+#   z.imp
+#   puts "z[1000] = #{z[1000]}"
+#   puts "z[1000][200] = #{z[1000][200]}"
+#   puts "z[4] = #{z[4]}"
+#   puts "z[1000][500] = #{z[1000][500]}"
+#   puts "z[0][0] = #{z[0][0]}"
+#   
+#   puts "-------------------------"
+#   x = z.traspuesta
+#   x.imp
+#   puts "-------------------------"
+#   
+#    puts "-------------------------"
+#    r = z - y
+#    puts "-------------------------"
+#    r.imp
+#    puts "-------------------------"
+#    b = SparseVector.new ({ 1 => 10, 2 => 22, 3 => 33 })
+#    c = SparseVector.new ({ 1 => 10, 2 => 20, 3 => 30 })
+#    x = b + c
+#    
+#    puts x
+#   
+#   mi = z.min
+#   puts mi
+  
+  a = Matriz.new(3,3,[1,2,3,4,5,6,7,8,9])
+  b = a.def_tipo
+  puts b.class
+  puts "-------------------"
+  b.imprimir
+  
+  c = Matriz.new(3,3,[1,0,0,0,0,6,0,0,9])
+  d = c.def_tipo
+  puts d.class
+  puts "-------------------"
+  d.imp
+  
+  
+end
 
 end
+
