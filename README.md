@@ -1,38 +1,29 @@
-#Práctica 09
+# MatrixDisp
 
-Programa que nos proporciona la posibilidad de representar matrices densas y dispersas de distinta forma.
+TODO: Write a gem description
 
-##Jerarquía de Clases
+## Installation
 
-En este código encontraremos la clase madre "Matriz", la cual tendrá dos hijos: "MatrizDispersa" y "MatrizDensa".
+Add this line to your application's Gemfile:
 
-La clase Matriz nos servirá de interfaz para las clases hijas y éstas, tendrán implementadas sus operaciones básicas, cuya implementación varía en cada caso.
+    gem 'matrix_disp'
 
-##Jerarquía de Directorios:
+And then execute:
 
--prct09/.git
+    $ bundle
 
--prct09/.gitignore
+Or install it yourself as:
 
--prct09/Gemfile
+    $ gem install matrix_disp
 
--prct09/LICENSE.txt
+## Usage
 
--prct09/Practica9.gemspec
+TODO: Write usage instructions here
 
--prct09/README.md
+## Contributing
 
--prct09/Rakefile
-
--prct09/bin
-
-----prct09/bin/Practica09
-
-
--prct09/lib
-
-----prct09/lib/Practica9.rb
-
-----prct09/lib/Practica9
-
---------prct09/lib/Practica9/version.rb
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
