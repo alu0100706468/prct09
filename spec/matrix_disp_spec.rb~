@@ -239,3 +239,19 @@ end
 		  end
                 end 
         end
+	describe Matriz do
+		before :each do
+		  
+		end
+		#Se debe poder indexar
+		context "1. Segun el numero de ceros," do
+		  it "Una matriz debe ser dispersa o Densa" do
+                    a = Matriz.new(3,3,[1,2,3,4,5,6,7,8,9])
+		    b = a.def_tipo
+		    expect(b.class).to eq(Math::DenseMatrix)
+		    c = Matriz.new(3,3,[1,0,0,0,0,6,0,0,9])
+		    d = c.def_tipo
+		    expect(d.class).to eq(Math::SparseMatrix)
+		  end
+		end
+        end
