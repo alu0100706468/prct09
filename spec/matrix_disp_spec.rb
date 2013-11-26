@@ -272,25 +272,25 @@ end
                                 a = DenseMatrix.new(3, 3,[1,2,3,4,5,6,7,8,9])
                                 b = a * @p
                                 expect(b[1,1]).to be_a_kind_of(Fixnum)
-				expect(b[1,1]).to eq(81)
+				                        expect(b[1,1]).to eq(81)
                         end
                         it "2.2 Division" do
                                 a = DenseMatrix.new(3, 3,[1,2,3,4,5,6,7,8,9])
                                 a[1,2] = 15
                                 b = @p/a
-				expect(b[1,1]).to eq(52.5)
+				                        expect(b[1,1]).to eq(52.5)
                         end
                         it "2.3 Suma" do
                                 a = DenseMatrix.new(3, 3,[1,2,3,4,5,6,7,8,9])
                                 b = []
                                 b = a + @p
-				expect(b[4]).to eq(10)
+				                        expect(b[1,1]).to eq(10)
                         end
                         it "2.4 Resta" do
                                 a = DenseMatrix.new(3, 3,[1,2,3,4,5,6,7,8,9])
                                 b = []
                                 b = a - @p
-				expect(b[4]).to eq(0)
+				                        expect(b[4]).to eq(0)
                         end
                 end 
         end

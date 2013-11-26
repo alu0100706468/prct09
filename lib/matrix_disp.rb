@@ -321,34 +321,30 @@ module Math
     def []=(a,b,r)
       @m[a+(b*@c)] = r
     end
-    #Método que permite la multiplicación de matrices densas
-    def *(other)
-      a = Array.new(@f*@c, 0)
-      resultado = DenseMatrix.new(@f, @c, a)
-      if @f*@c == other.c*other.f
-        for i in (0...@c) do
-        	for j in (0...@f) do
-        	  s = 0
-        	  for k in (0...@c) do 
-        	    s = s + (@m[i+(k*@c)] * other.m[k+(j*other.c)]) 
-        	  end
-        	  resultado[i,j] = s
-        	end
+    #método que transforma la matriz en un vector de vectores. Devuelve un vector.
+    def to_v
+      v = []
+      for i in (0...@c) do
+        tmp = []
+        for j in (0...@f) do
+          tmp[j] = @m[i+(j*@c)]
         end
-      else
-        puts "Las matriz A debe tener el mismo numero de filas que las columnas de B"
+        v[i] = tmp
       end
-      resultado
+      v
+    end
+    #Método que permite la multiplicación de matrices densas mediante programación funcional
+    def *(other)
+      tmp = self.tras; a = tmp.to_v; d = other.to_v;
+      i = -1; j = -1; k= -1; l= -1;
+      ex = Array.new()
+      a.map { |b| i+=1; k=-1; d.map { |e| k+=1; l=-1; e.map { |f| l+=1; a[i][l]*d[k][l] }.inject (0) { |s,p| s+p } } }.map{ |r| r.each { |t| ex.push(t) } }
+      return DenseMatrix.new(@c,@f, ex)
     end
     #Método que permite la suma de matrices densas
     def +(other)
-      i = 0
-      tmp = []
-      while i < @f*@c
-        tmp[i] = @m[i]+other.m[i]
-        i=i+1
-      end
-      tmp
+      i=-1
+      return DenseMatrix.new(@c,@f,other.m.map { |e| i+=1; e+@m[i]})
     end
     #Método que permite la resta de matrices densas
     def -(other)
@@ -497,7 +493,21 @@ module Math
   end
 
   if __FILE__ == $0 
-      
+      a = DenseMatrix.new(3,3,[1,2,3,4,5,6,7,8,9])
+      b = DenseMatrix.new(3,3,[2,4,6,8,10,12,14,16,18])
+      a.imprimir
+      b.imprimir
+      puts "-----------------------"
+      c = a * b
+      puts c.inspect
+      c.imprimir
+      # x = a.to_v
+      # y = b.to_v
+      # for i in (0...x.size) do
+      #   for j in (0...x[i].size) do
+      #     puts x[i][j]
+      #   end
+      # end
   end
 
 end
