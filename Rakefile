@@ -20,3 +20,8 @@ desc 'Ejecuta los tests en formato html'
 task :thtml do
   sh "rspec -Ilib -Ispec -f h spec/matrix_disp_spec.rb"
 end
+
+desc 'Genera la documentación mediante RDOC'
+rask :rdoc do
+	sh "rdoc --main lib/matrix_disp.rb"
+end
