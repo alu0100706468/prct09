@@ -6,7 +6,7 @@ require 'matrix_disp/version'
 Gem::Specification.new do |spec|
   spec.name          = "matrix_disp"
   spec.version       = MatrixDisp::VERSION
-  spec.authors       = ["Jonás López Mesa", "Sergio"]
+  spec.authors       = ["Jonás López Mesa", "Sergio Miguel Delgado"]
   spec.email         = ["alu0100608359@ull.edu.es", "alu0100706468@ull.edu.es"]
   spec.description   = %q{Gema para realizar operaciones básicas con matrices (Tanto densas como dispersas)}
   spec.summary       = %q{Gema para realizar operaciones básicas con matrices (Tanto densas como dispersas)}
