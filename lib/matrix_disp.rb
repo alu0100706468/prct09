@@ -212,8 +212,8 @@ module Math
       for i in other.matrix.keys do
         resultado.matrix[i] = other[i]
       end
-      @matrix.keys.times do |i|
-        @matrix[i].keys.times do |j|
+      (@matrix.keys).times do |i|
+        (@matrix[i].keys).times do |j|
         	if other.matrix[i][j] == nil
         	  resultado.matrix[i] = @matrix[i]
         	else

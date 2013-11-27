@@ -22,6 +22,6 @@ task :thtml do
 end
 
 desc 'Genera la documentación mediante RDOC'
-task :rdoc do
+rask :rdoc do
 	sh "rdoc --main lib/matrix_disp.rb"
 end
