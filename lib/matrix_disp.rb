@@ -184,6 +184,10 @@ module Math
     def [](i)
       @matrix[i]
     end
+    #
+    def each
+      super
+    end
     #método que permite la asignación de elementos de la matriz por columnas
     def []=(i,other)
       for y in other.keys do
@@ -212,8 +216,8 @@ module Math
       for i in other.matrix.keys do
         resultado.matrix[i] = other[i]
       end
-      (@matrix.keys).times do |i|
-        (@matrix[i].keys).times do |j|
+      @matrix.each do |i, v1|
+        @matrix[i].vector.each do |j, v2|
         	if other.matrix[i][j] == nil
         	  resultado.matrix[i] = @matrix[i]
         	else
