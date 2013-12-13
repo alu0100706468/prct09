@@ -350,6 +350,17 @@ module Math
       i=-1
       return DenseMatrix.new(@c,@f,other.m.map { |e| i+=1; e+@m[i]})
     end
+    #método que encuentra el elemento de la matriz especificado por un bloque.
+    def encontrar
+      f.times do |i|
+        c.times do |j|
+          if (yield(self[j,i]))
+            return i, j
+          end
+        end
+      end
+      nil
+    end
     #Método que permite la resta de matrices densas
     def -(other)
       i = 0
@@ -495,7 +506,43 @@ module Math
       resultado
     end
   end
-
+  #Clase que permite al usuario hacer uso de las matrices de una manera cómoda
+  class Api
+    OPERAND = :operand
+    attr_accessor :tipo, :options
+    def initialize(tipo = "", &block)
+      self.tipo = tipo
+      self.options = []
+      @opt = Array.new()
+      @v = Array.new()
+      @mt = Array.new()
+      @counter = 0
+      @m = 0
+      instance_eval &block
+    end
+    def option (opt)
+      @opt[@counter] = opt
+      @counter += 1
+    end
+    def operand (v)
+      for i in (0...v.size) do
+        for j in (0...v[i].size) do
+          @v[i+(j*v[i].size)] = v[i][j]
+        end
+      end
+      if @opt[0] == "densa"
+        @mt[@m] = DenseMatrix.new(v.size, v[0].size, @v)
+        @m += 1
+      end
+    end
+    def run
+      if self.tipo == "suma"
+        puts @mt[0].class
+        x = @mt[0] + @mt[1]
+        x.imprimir
+      end
+    end
+  end
   if __FILE__ == $0 
       a = DenseMatrix.new(3,3,[1,2,3,4,5,6,7,8,9])
       b = DenseMatrix.new(3,3,[2,4,6,8,10,12,14,16,18])

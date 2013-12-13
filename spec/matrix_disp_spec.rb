@@ -293,5 +293,12 @@ end
 				                        expect(b[4]).to eq(0)
                         end
                 end 
+                context "Debe poderse encontrar un elemento específico" do
+                  it "Que haga la búsqueda de un elemento multiplicado que supere a 6" do
+                    a = DenseMatrix.new(2,3,[1,2,9,7,8,4])
+                    expect(a.encontrar {|e| e*e > 6} ).to eq([0,2])
+                  end
+                end
+                    
         end
 end
